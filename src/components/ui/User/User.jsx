@@ -4,10 +4,10 @@ import 'boxicons'
 import Menu from '../Menu/Menu'
 
 const User = () => {
-  const [isMenuOpen, SetIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const toggleMenu = () => {
-    SetIsMenuOpen(!isMenuOpen)
+    setIsMenuOpen(!isMenuOpen)
   } 
 
   return (
