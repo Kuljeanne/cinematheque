@@ -1,0 +1,19 @@
+.user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.img {
+  width: 5rem;
+  height: 5rem;
+  border: .3rem solid #fff;
+  border-radius: 50%;
+  background-image: url('../../../../public/user.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 130%;
+}
