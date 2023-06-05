@@ -1,12 +1,10 @@
-import Search from "../../ui/Search/Search"
+import Search from '../../ui/Search/Search'
 
 const SearchResults = () => {
   return (
     <>
       <Search />
-      <div>
-        {/* here will be searched cards */}
-      </div>
+      <div>{/* here will be searched cards */}</div>
     </>
   )
 }
