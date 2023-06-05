@@ -1,4 +1,4 @@
-import 'boxicons'
+import { GoSearch } from 'react-icons/go'
 
 import styles from './Search.module.scss'
 
@@ -7,11 +7,11 @@ const Search = () => {
     <div className={styles.container}>
       <div className={styles.search}>
         <label htmlFor="search-input">
-          <box-icon name="search-alt" color="#ffffff"></box-icon>
+          <GoSearch size={'2rem'}/>
         </label>
         <input
           className={styles.input}
-          type="text"
+          type="search"
           name="search-movie"
           id="search-input"
           placeholder="Search..."

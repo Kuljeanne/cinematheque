@@ -1,4 +1,4 @@
-const MovieInfo = ({ movie }) => {
+const MovieInfo = () => {
   return (
     <div>
       <h2>Movie</h2>

@@ -1,5 +1,5 @@
-import 'boxicons'
 import { useState } from 'react'
+import { MdArrowDropDown } from 'react-icons/md'
 
 import Menu from '../Menu/Menu'
 import styles from './User.module.scss'
@@ -14,7 +14,7 @@ const User = () => {
   return (
     <div className={styles.user} onClick={toggleMenu}>
       <div className={styles.img}></div>
-      <box-icon name="caret-down" animation="tada-hover" color="#ffffff"></box-icon>
+      <MdArrowDropDown size={'2.5rem'} />
       {isMenuOpen && <Menu />}
     </div>
   )
