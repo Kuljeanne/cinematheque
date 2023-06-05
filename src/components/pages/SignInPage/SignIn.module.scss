@@ -1,0 +1,19 @@
+.wrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  background-color: #000000;
+  border: .2rem solid #fff;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
