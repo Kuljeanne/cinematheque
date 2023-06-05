@@ -1,7 +1,8 @@
-import { useState } from 'react'
-import styles from './User.module.scss'
 import 'boxicons'
+import { useState } from 'react'
+
 import Menu from '../Menu/Menu'
+import styles from './User.module.scss'
 
 const User = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)

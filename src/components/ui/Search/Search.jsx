@@ -1,5 +1,6 @@
-import styles from './Search.module.scss'
 import 'boxicons'
+
+import styles from './Search.module.scss'
 
 const Search = () => {
   return (
