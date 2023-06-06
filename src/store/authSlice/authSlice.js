@@ -1,13 +1,20 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-  login: '',
-  email: '',
-  password: '',
+  login: null,
+  email: null,
+  password: null,
   favourites: [],
   history: [],
-  status: '',
+  status: null,
   error: null
+}
+
+function getCookie(name) {
+  let matches = document.cookie.match(
+    new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
+  )
+  return matches ? decodeURIComponent(matches[1]) : undefined
 }
 
 const isUserExist = (login) => {
@@ -17,7 +24,7 @@ const isUserExist = (login) => {
 const fetchingUser = ({ login, email, password }) =>
   new Promise((resolve) => {
     if (isUserExist(login)) throw Error('A user with such a login exists')
-    setTimeout(() => resolve({ login, email, password }), 500)
+    setTimeout(() => resolve({ login, email, password }), 1500)
   })
 
 export const getUser = createAsyncThunk(
@@ -36,13 +43,42 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    addUser: (state, action) => {
-      state.login = action.payload.login
-      state.email = action.payload.email
-      state.password = action.payload.password
+    logInUser: (state, action) => {
+      const user = JSON.parse(localStorage.getItem(action.payload.login))
+      if (!user) {
+        state.error = 'User is not found'
+        return
+      }
+      if (user.password !== action.payload.password) {
+        state.error = 'Password is not correct'
+        return
+      }
+      state.status = 'auth'
+      state.login = user.login
+      state.email = user.email
+      state.password = user.password
+      state.history = user.history
+      state.favourites = user.favourites
+      localStorage.setItem(state.login, JSON.stringify(state))
+      document.cookie = `user=${state.login}`
+    },
+    checkAuth: (state) => {
+      if (!state.login && getCookie('user')) {
+        const login = getCookie('user')
+        const user = JSON.parse(localStorage.getItem(login))
+        state.status = 'auth'
+        state.login = user.login
+        state.email = user.email
+        state.password = user.password
+        state.history = user.history
+        state.favourites = user.favourites
+      }
     },
     removeUser: (state) => {
-      state.isAuth = 'out'
+      state.status = 'out'
+      localStorage.setItem(state.login, JSON.stringify(state))
+      state.login = null
+      document.cookie = `user=${state.login}; max-age=-1`
     }
   },
   extraReducers: (builder) => {
@@ -57,7 +93,7 @@ export const authSlice = createSlice({
         state.email = action.payload.email
         state.password = action.payload.password
         localStorage.setItem(state.login, JSON.stringify(state))
-
+        document.cookie = `user=${state.login}`
       })
       .addCase(getUser.rejected, (state, action) => {
         state.error = action.payload
@@ -65,6 +101,6 @@ export const authSlice = createSlice({
   }
 })
 
-export const { addUser, removeUser } = authSlice.actions
+export const { logInUser, checkAuth, removeUser } = authSlice.actions
 
 export default authSlice.reducer

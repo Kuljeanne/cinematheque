@@ -1,7 +1,10 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { AiOutlineWarning } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
+//import { useAuth } from '../../../hooks/useAuth'
 import { getUser } from '../../../store/authSlice/authSlice.js'
 import styles from './SignIn.module.scss'
 
@@ -11,12 +14,18 @@ const SignIn = () => {
     handleSubmit,
     formState: { errors }
   } = useForm()
-
+  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const userSignUp = (data) => {
     dispatch(getUser(data))
   }
+
+  const selector = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    if (selector.status === 'auth') navigate('/')
+  }, [navigate, selector.status])
 
   return (
     <div className={styles.wrapper}>
@@ -60,15 +69,39 @@ const SignIn = () => {
           name="password"
           placeholder="password"
         />
-        <div>
-          {errors.login && <span>Login field is required</span>}
-          {errors.email && <span>{errors.email.message}</span>}
-          {errors.password && <span>{errors.password.message}</span>}
+        <div className={styles.errors}>
+          {selector.error && (
+            <span>
+              <AiOutlineWarning />
+              {selector.error}
+            </span>
+          )}
+          {errors.login && (
+            <span>
+              <AiOutlineWarning />
+              Login field is required
+            </span>
+          )}
+          {errors.email && (
+            <span>
+              <AiOutlineWarning />
+              {errors.email.message}
+            </span>
+          )}
+          {errors.password && (
+            <span>
+              <AiOutlineWarning />
+              {errors.password.message}
+            </span>
+          )}
         </div>
-
-        <button className={styles.btn} type="submit">
-          Sign Up
-        </button>
+        {selector.status === 'loading' ? (
+          <p className={styles.loading}>Signing Up ...</p>
+        ) : (
+          <button className={styles.btn} type="submit">
+            Sign Up
+          </button>
+        )}
       </form>
 
       <Link to={'/login'} className={styles.link}>

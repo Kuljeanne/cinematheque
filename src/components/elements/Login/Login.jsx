@@ -1,6 +1,10 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { AiOutlineWarning } from 'react-icons/ai'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 
+import { logInUser } from '../../../store/authSlice/authSlice'
 import styles from './Login.module.scss'
 
 const Login = () => {
@@ -9,12 +13,26 @@ const Login = () => {
     handleSubmit,
     formState: { errors }
   } = useForm()
+  const navigate = useNavigate()
+  const user = useSelector((state) => state.auth)
+
+  const dispatch = useDispatch()
+
+  const logIn = (login, password) => {
+    dispatch(logInUser({ login, password }))
+  }
+
+  useEffect(() => {
+    if (user.status === 'auth') navigate('/')
+  }, [navigate, user.status])
 
   return (
     <div className={styles.wrapper}>
       <h2 className={styles.title}>Log In</h2>
 
-      <form className={styles.form} onSubmit={handleSubmit((data) => console.log(data))}>
+      <form
+        className={styles.form}
+        onSubmit={handleSubmit((data) => logIn(data.login, data.password))}>
         <input
           className={styles.input}
           {...register('login', { required: true })}
@@ -25,23 +43,31 @@ const Login = () => {
         <input
           className={styles.input}
           {...register('password', {
-            required: 'Password is required',
-            minLength: {
-              value: 6,
-              message: 'Min length is 6'
-            },
-            pattern: {
-              value: /(?=.*[0-9])(?=.*[a-z])[0-9a-z]{6,}/g,
-              message: 'Password must contain at least 1 number and 1 letter'
-            }
+            required: 'Password is required'
           })}
           type="password"
           name="password"
           placeholder="password"
         />
-        <div>
-          {errors.login && <span>Login field is required</span>}
-          {errors.password && <span>{errors.password.message}</span>}
+        <div className={styles.errors}>
+          {user.error && (
+            <span>
+              <AiOutlineWarning />
+              {user.error}
+            </span>
+          )}
+          {errors.login && (
+            <span>
+              <AiOutlineWarning />
+              Login field is required
+            </span>
+          )}
+          {errors.password && (
+            <span>
+              <AiOutlineWarning />
+              {errors.password.message}
+            </span>
+          )}
         </div>
 
         <button className={styles.btn} type="submit">
