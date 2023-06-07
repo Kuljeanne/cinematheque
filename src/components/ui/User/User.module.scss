@@ -7,6 +7,11 @@
   position: relative;
 }
 
+.username {
+  font-size: 1.8rem;
+  margin-right: 0.5rem;
+}
+
 .img {
   width: 5rem;
   height: 5rem;
@@ -16,4 +21,23 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 130%;
+}
+
+.sign_btn {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+
+  >a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.6rem;
+    border-bottom: 0.1rem solid transparent;
+
+  }
+
+  >a:hover {
+    border-color: #fff;
+    box-shadow: 0rem 0.4rem 0.5rem -0.2em #fff;
+  }
 }
