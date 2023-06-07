@@ -59,13 +59,12 @@ export const authSlice = createSlice({
       state.password = user.password
       state.history = user.history
       state.favourites = user.favourites
-      localStorage.setItem(state.login, JSON.stringify(state))
-      document.cookie = `user=${state.login}`
     },
     checkAuth: (state) => {
       if (!state.login && getCookie('user')) {
         const login = getCookie('user')
         const user = JSON.parse(localStorage.getItem(login))
+        if (!user) return state
         state.status = 'auth'
         state.login = user.login
         state.email = user.email
@@ -76,9 +75,6 @@ export const authSlice = createSlice({
     },
     removeUser: (state) => {
       state.status = 'out'
-      localStorage.setItem(state.login, JSON.stringify(state))
-      state.login = null
-      document.cookie = `user=${state.login}; max-age=-1`
     }
   },
   extraReducers: (builder) => {
@@ -92,8 +88,6 @@ export const authSlice = createSlice({
         state.login = action.payload.login
         state.email = action.payload.email
         state.password = action.payload.password
-        localStorage.setItem(state.login, JSON.stringify(state))
-        document.cookie = `user=${state.login}`
       })
       .addCase(getUser.rejected, (state, action) => {
         state.error = action.payload

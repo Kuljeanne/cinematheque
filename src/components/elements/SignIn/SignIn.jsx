@@ -1,10 +1,8 @@
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { AiOutlineWarning } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-//import { useAuth } from '../../../hooks/useAuth'
 import { getUser } from '../../../store/authSlice/authSlice.js'
 import styles from './SignIn.module.scss'
 
@@ -14,7 +12,6 @@ const SignIn = () => {
     handleSubmit,
     formState: { errors }
   } = useForm()
-  const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const userSignUp = (data) => {
@@ -22,10 +19,6 @@ const SignIn = () => {
   }
 
   const selector = useSelector((state) => state.auth)
-
-  useEffect(() => {
-    if (selector.status === 'auth') navigate('/')
-  }, [navigate, selector.status])
 
   return (
     <div className={styles.wrapper}>

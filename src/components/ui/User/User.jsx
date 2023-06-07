@@ -8,7 +8,7 @@ import styles from './User.module.scss'
 
 const User = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { login } = useSelector((state) => state.auth)
+  const { status, login } = useSelector((state) => state.auth)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -16,7 +16,7 @@ const User = () => {
 
   return (
     <>
-      {login && (
+      {status === 'auth' && (
         <div className={styles.user} onClick={toggleMenu}>
           <p className={styles.username}>{login}</p>
           <div className={styles.img}></div>
@@ -24,7 +24,7 @@ const User = () => {
           {isMenuOpen && <Menu />}
         </div>
       )}
-      {!login && (
+      {(!status || status === 'out') && (
         <div className={styles.sign_btn}>
           <Link to="/login">LOG IN</Link>
           <Link to="/signup">SIGN UP</Link>

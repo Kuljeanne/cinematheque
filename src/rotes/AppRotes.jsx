@@ -7,6 +7,7 @@ import Main from '../components/elements/Main/Main'
 import NotFound from '../components/pages/NotFound/NotFound'
 import SignInPage from '../components/pages/SignInPage/SignInPage'
 import { ProtectedRoute } from './ProtectedRoure'
+import { UnprotectedRoute } from './UnprotectedRoure'
 
 const SearchResults = lazy(() => import('../components/pages/SearchResults/SearchResults'))
 const MovieInfo = lazy(() => import('../components/pages/MovieInfo/MovieInfo'))
@@ -19,8 +20,10 @@ const AppRotes = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        <Route path="/login" element={<SignInPage hasAccount={true} />} />
-        <Route path="/signup" element={<SignInPage hasAccount={false} />} />
+        <Route element={<UnprotectedRoute isAuth={user.status === 'auth'} />}>
+          <Route path="/login" element={<SignInPage hasAccount={true} />} />
+          <Route path="/signup" element={<SignInPage hasAccount={false} />} />
+        </Route>
 
         <Route path="/" element={<App />}>
           <Route path="/" element={<Main />} />

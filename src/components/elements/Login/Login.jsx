@@ -1,8 +1,7 @@
-import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { AiOutlineWarning } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import { logInUser } from '../../../store/authSlice/authSlice'
 import styles from './Login.module.scss'
@@ -13,7 +12,6 @@ const Login = () => {
     handleSubmit,
     formState: { errors }
   } = useForm()
-  const navigate = useNavigate()
   const user = useSelector((state) => state.auth)
 
   const dispatch = useDispatch()
@@ -21,10 +19,6 @@ const Login = () => {
   const logIn = (login, password) => {
     dispatch(logInUser({ login, password }))
   }
-
-  useEffect(() => {
-    if (user.status === 'auth') navigate('/')
-  }, [navigate, user.status])
 
   return (
     <div className={styles.wrapper}>
