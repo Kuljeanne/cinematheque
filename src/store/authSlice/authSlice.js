@@ -75,6 +75,15 @@ export const authSlice = createSlice({
     },
     removeUser: (state) => {
       state.status = 'out'
+    },
+    toggleFavourite: (state, action) => {
+      const movieId = action.payload.id
+      const hasInFav = state.favourites.some((fav) => fav.id === movieId)
+      if (hasInFav) {
+        state.favourites = state.favourites.filter((fav) => fav.id !== movieId)
+      } else {
+        state.favourites.push(action.payload)
+      }
     }
   },
   extraReducers: (builder) => {
@@ -88,6 +97,8 @@ export const authSlice = createSlice({
         state.login = action.payload.login
         state.email = action.payload.email
         state.password = action.payload.password
+        state.favourites = []
+        state.history = []
       })
       .addCase(getUser.rejected, (state, action) => {
         state.error = action.payload
@@ -95,6 +106,6 @@ export const authSlice = createSlice({
   }
 })
 
-export const { logInUser, checkAuth, removeUser } = authSlice.actions
+export const { logInUser, checkAuth, removeUser, toggleFavourite } = authSlice.actions
 
 export default authSlice.reducer

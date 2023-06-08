@@ -4,6 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import App from '../App'
 import Main from '../components/elements/Main/Main'
+import Catalog from '../components/pages/Catalog/Catalog'
 import NotFound from '../components/pages/NotFound/NotFound'
 import SignInPage from '../components/pages/SignInPage/SignInPage'
 import { ProtectedRoute } from './ProtectedRoure'
@@ -28,7 +29,8 @@ const AppRotes = () => {
         <Route path="/" element={<App />}>
           <Route path="/" element={<Main />} />
           <Route path="search" element={<SearchResults />} />
-          <Route path="movie" element={<MovieInfo />} />
+          <Route path=":catalog" element={<Catalog />} />
+          <Route path="movie/:id" element={<MovieInfo />} />
           <Route element={<ProtectedRoute isAuth={user.status === 'auth'} />}>
             <Route path="/favourites" element={<Favorites />} />
             <Route path="/history" element={<History />} />
