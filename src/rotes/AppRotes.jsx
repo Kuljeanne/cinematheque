@@ -10,6 +10,7 @@ import SearchPage from '../components/pages/SearchPage/SearchPage'
 import SignInPage from '../components/pages/SignInPage/SignInPage'
 import { ProtectedRoute } from './ProtectedRoure'
 import { UnprotectedRoute } from './UnprotectedRoure'
+import Spinner from '../components/elements/Spinner/Spinner'
 
 const SearchResults = lazy(() => import('../components/elements/SearchResults/SearchResults'))
 const MovieInfo = lazy(() => import('../components/pages/MovieInfo/MovieInfo'))
@@ -20,7 +21,7 @@ const AppRotes = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Spinner/>}>
       <Routes>
         <Route element={<UnprotectedRoute isAuth={user.status === 'auth'} />}>
           <Route path="/login" element={<SignInPage hasAccount={true} />} />
