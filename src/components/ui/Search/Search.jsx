@@ -1,23 +1,20 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react'
 import { GoSearch } from 'react-icons/go'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
+import { useSearch } from '../../../hooks/useSearch'
 import { addHistory } from '../../../store/userSlice/userSlice'
 import styles from './Search.module.scss'
 
-const Search = ({ value = '' }) => {
+const Search = () => {
   const navigate = useNavigate()
-  const [searchExp, setSearchExp] = useState(value)
-
+  const { data, handleInput, isSuccess, isLoading, searchValue } = useSearch()
   const dispatch = useDispatch()
 
-  const handleSearch = () => {
-    navigate(`/search/${searchExp}`)
-    setSearchExp(searchExp)
+  const handleSearch = (search) => {
+    navigate(`/search/${search}`)
     const date = new Date().toLocaleString()
-    dispatch(addHistory({ exp: searchExp, date }))
+    dispatch(addHistory({ exp: search, date }))
   }
 
   return (
@@ -32,10 +29,30 @@ const Search = ({ value = '' }) => {
           name="search-movie"
           id="search-input"
           placeholder="Search movie..."
-          value={searchExp}
-          onChange={(e) => setSearchExp(e.target.value)}
+          value={searchValue}
+          onChange={handleInput}
         />
-        <button className={styles.btn} onClick={handleSearch}>
+
+        {isSuccess && (
+          <ul className={styles.results}>
+            {data?.length ? (
+              data.map((res, i) => (
+                <li
+                  key={i}
+                  onClick={() => {
+                    handleSearch(res.title)
+                  }}>
+                  {res.title}
+                </li>
+              ))
+            ) : (
+              <li>Not Found</li>
+            )}
+          </ul>
+        )}
+        {isLoading && <p className={styles.results}>Loading...</p>}
+
+        <button className={styles.btn} onClick={() => handleSearch(searchValue)}>
           Search
         </button>
       </div>
@@ -43,7 +60,5 @@ const Search = ({ value = '' }) => {
   )
 }
 
-Search.propTypes = {
-  value: PropTypes.string
-}
+
 export default Search

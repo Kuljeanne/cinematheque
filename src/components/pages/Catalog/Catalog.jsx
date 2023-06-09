@@ -10,7 +10,7 @@ const Catalog = () => {
   if (isLoading) {
     content = <div className={styles.loading}>Loading...</div>
   } else if (isSuccess) {
-    content = data.items.map((movie) => (
+    content = data.map((movie) => (
       <MovieCard
         key={movie.id}
         id={movie.id}

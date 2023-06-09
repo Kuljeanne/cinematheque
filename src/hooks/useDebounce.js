@@ -1,15 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-import { useSearchMovieQuery } from '../store/api/api'
+export default function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value)
 
-export default function useDebounce(exp, clb, delay) {
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay || 500)
 
-    const { data, isSuccess } = useSearchMovieQuery(exp)
-    useEffect(() => {
-      const timeout = setTimeout(() => {
-        isSuccess ? clb(data.results.map((res) => res.title)) : clb(['not found'])
-      }, delay)
-      return () => clearTimeout(timeout)
-    }, [clb, data, delay, isSuccess])
-  }
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [value, delay])
 
+  return debouncedValue
+}

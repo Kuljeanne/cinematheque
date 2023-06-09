@@ -14,7 +14,7 @@ const SearchResults = () => {
   if (isLoading) {
     content = <div className={styles.loading}>Loading...</div>
   } else if (isSuccess) {
-    const movies = data.results
+    const movies = data
     content = movies.map((movie) => (
       <MovieCard key={movie.id} id={movie.id} img={movie.image} title={movie.title} />
     ))
