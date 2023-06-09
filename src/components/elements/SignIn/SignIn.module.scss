@@ -6,6 +6,7 @@
 
 .title {
   font-size: 2.4rem;
+  margin: 1.5rem;
 }
 
 .form {
@@ -26,6 +27,7 @@
 }
 
 .btn {
+  cursor: pointer;
   box-sizing: border-box;
   width: 10rem;
   height: 3rem;
@@ -45,7 +47,7 @@
 .link {
   text-decoration: none;
   font-size: 1.6rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   color: #fff;
 }
 

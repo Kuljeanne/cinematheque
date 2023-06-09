@@ -25,3 +25,18 @@
   font-size: 2rem;
   padding: 0.6rem 0.3rem;
 }
+
+.btn {
+  margin-left: .5rem;
+  cursor: pointer;
+  color: #fff;
+  background-color: transparent;
+  padding: 0.7rem 1rem;
+  border: 0.1rem solid #383737;
+  border-radius: 0.5rem;
+  font-size: 1.4rem;
+}
+
+.btn:hover {
+  box-shadow: 0 0 0.7rem 0.2rem #fff;
+}
