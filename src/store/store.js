@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 
 import { movieApi } from './api/api'
-import authReducer from './authSlice/authSlice'
 import { saveUserData } from './middlewares/saveUserData'
+import userReducer from './userSlice/userSlice'
 
 const store = configureStore({
   reducer: {
-    auth: authReducer,
+    user: userReducer,
     [movieApi.reducerPath]: movieApi.reducer
   },
   middleware: (getDefaultMiddleware) =>

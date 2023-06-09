@@ -11,8 +11,11 @@ export const movieApi = createApi({
     }),
     getMovieInfo: builder.query({
       query: (id) => `/Title/${process.env.REACT_APP_IMDB_API_KEY}/${id}`
+    }),
+    searchMovie: builder.query({
+      query: (exp) => `/SearchMovie/${process.env.REACT_APP_IMDB_API_KEY}/${exp}`
     })
   })
 })
 
-export const { useGetMoviesQuery, useGetMovieInfoQuery } = movieApi
+export const { useGetMoviesQuery, useGetMovieInfoQuery, useSearchMovieQuery } = movieApi

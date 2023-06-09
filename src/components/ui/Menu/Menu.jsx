@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 
+import { removeUser } from '../../../store/userSlice/userSlice'
 import styles from './Menu.module.scss'
-import { removeUser } from '../../../store/authSlice/authSlice'
 
 const Menu = () => {
   const dispatch = useDispatch()

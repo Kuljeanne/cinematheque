@@ -11,7 +11,7 @@ const MovieInfo = () => {
   let content
 
   if (isLoading) {
-    content = <div>Loading...</div>
+    content = <div className={styles.loading}>Loading...</div>
   } else if (isSuccess) {
     content = (
       <div className={styles.wrapper}>

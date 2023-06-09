@@ -3,13 +3,13 @@ export const saveUserData = (store) => (next) => (action) => {
     return action(store.dispatch, store.getState)
   }
   const result = next(action)
-  const { auth } = store.getState()
-  if (auth?.login) {
-    localStorage.setItem(auth.login, JSON.stringify(auth))
-    document.cookie = `user=${auth.login}`
+  const { user } = store.getState()
+  if (user?.login) {
+    localStorage.setItem(user.login, JSON.stringify(user))
+    document.cookie = `user=${user.login}`
   }
   if (action.type === 'auth/removeUser') {
-    document.cookie = `user=${auth.login}; max-age=-1`
+    document.cookie = `user=${user.login}; max-age=-1`
   }
 
   return result

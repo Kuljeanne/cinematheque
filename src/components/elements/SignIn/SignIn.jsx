@@ -3,7 +3,7 @@ import { AiOutlineWarning } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getUser } from '../../../store/authSlice/authSlice.js'
+import { getUser } from '../../../store/userSlice/userSlice.js'
 import styles from './SignIn.module.scss'
 
 const SignIn = () => {
@@ -18,7 +18,7 @@ const SignIn = () => {
     dispatch(getUser(data))
   }
 
-  const selector = useSelector((state) => state.auth)
+  const selector = useSelector((state) => state.user)
 
   return (
     <div className={styles.wrapper}>

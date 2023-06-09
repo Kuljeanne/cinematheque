@@ -28,7 +28,7 @@ const fetchingUser = ({ login, email, password }) =>
   })
 
 export const getUser = createAsyncThunk(
-  'auth/fetchingUser',
+  'user/fetchingUser',
   async ({ login, email, password }, { rejectWithValue }) => {
     try {
       const res = await fetchingUser({ login, email, password })
@@ -39,7 +39,7 @@ export const getUser = createAsyncThunk(
   }
 )
 
-export const authSlice = createSlice({
+export const userSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
@@ -84,6 +84,9 @@ export const authSlice = createSlice({
       } else {
         state.favourites.push(action.payload)
       }
+    },
+    addHistory: (state, action) => {
+      state.history.push(action.payload) 
     }
   },
   extraReducers: (builder) => {
@@ -106,6 +109,6 @@ export const authSlice = createSlice({
   }
 })
 
-export const { logInUser, checkAuth, removeUser, toggleFavourite } = authSlice.actions
+export const { logInUser, checkAuth, removeUser, toggleFavourite, addHistory } = userSlice.actions
 
-export default authSlice.reducer
+export default userSlice.reducer

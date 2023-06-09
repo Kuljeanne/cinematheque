@@ -8,7 +8,7 @@ import styles from './User.module.scss'
 
 const User = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { status, login } = useSelector((state) => state.auth)
+  const { status, login } = useSelector((state) => state.user)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)

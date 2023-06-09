@@ -4,7 +4,7 @@ import MovieCard from '../../ui/MovieCard/MovieCard'
 import styles from './Favourites.module.scss'
 
 const Favorites = () => {
-  const { favourites } = useSelector((state) => state.auth)
+  const { favourites } = useSelector((state) => state.user)
   return (
     <div>
       <h2 className={styles.title}>Favourites</h2>

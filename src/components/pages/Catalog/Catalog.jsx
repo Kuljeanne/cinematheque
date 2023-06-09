@@ -8,7 +8,7 @@ const Catalog = () => {
   let content
 
   if (isLoading) {
-    content = <div>Loading...</div>
+    content = <div className={styles.loading}>Loading...</div>
   } else if (isSuccess) {
     content = data.items.map((movie) => (
       <MovieCard

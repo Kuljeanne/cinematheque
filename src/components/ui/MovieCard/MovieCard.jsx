@@ -1,21 +1,21 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types'
 import { BsFillSuitHeartFill } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { toggleFavourite } from '../../../store/authSlice/authSlice'
+import { toggleFavourite } from '../../../store/userSlice/userSlice'
 import styles from './MovieCard.module.scss'
 
 const MovieCard = ({ id, img, title, crew }) => {
   const dispatch = useDispatch()
-  const { favourites } = useSelector(state => state.auth)
+  const { favourites } = useSelector((state) => state.user)
 
   const toggleLike = () => {
     dispatch(toggleFavourite({ id, img, title, crew }))
   }
 
   const isFavourite = () => {
-   return favourites.some(fav => fav.id === id)
+    return favourites.some((fav) => fav.id === id)
   }
 
   return (
@@ -30,6 +30,13 @@ const MovieCard = ({ id, img, title, crew }) => {
       </Link>
     </div>
   )
+}
+
+MovieCard.propTypes = {
+  id: PropTypes.string.isRequired,
+  img: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  crew: PropTypes.string
 }
 
 export default MovieCard
