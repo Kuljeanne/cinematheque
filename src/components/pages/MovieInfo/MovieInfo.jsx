@@ -6,7 +6,7 @@ import styles from './MoviesInfo.module.scss'
 const MovieInfo = () => {
   const params = useParams()
   const id = params.id
-  const { data, isLoading, isSuccess, isError, error } = useGetMovieInfoQuery(id)
+  const { data, isLoading, isSuccess, isError } = useGetMovieInfoQuery(id)
 
   let content
 
@@ -62,7 +62,7 @@ const MovieInfo = () => {
       </div>
     )
   } else if (isError) {
-    content = <div>{error.toString()}</div>
+    content = <div>Something went wrong, please try again </div>
   }
   return <div>{content}</div>
 }

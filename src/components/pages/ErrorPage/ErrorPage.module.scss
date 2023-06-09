@@ -1,0 +1,24 @@
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-image: url(../../../../public/error/error.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.info {
+  padding-left: 10%;
+  padding-top: 10%;
+  width: 35%;
+}
+
+.title {
+  font-size: 4rem;
+  margin-bottom: 2rem;
+}
+
+.text {
+  font-size: 2.2rem;
+  text-align: end;
+}

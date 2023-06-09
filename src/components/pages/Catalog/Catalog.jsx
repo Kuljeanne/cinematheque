@@ -3,7 +3,7 @@ import MovieCard from '../../ui/MovieCard/MovieCard'
 import styles from './Catalog.module.scss'
 
 const Catalog = () => {
-  const { data, isLoading, isSuccess, isError, error } = useGetMoviesQuery()
+  const { data, isLoading, isSuccess, isError } = useGetMoviesQuery()
 
   let content
 
@@ -20,7 +20,7 @@ const Catalog = () => {
       />
     ))
   } else if (isError) {
-    content = <div>{error.toString()}</div>
+    content = <div>Something went wrong, please try again</div>
   }
   return <div className={styles.movies}>{content}</div>
 }
