@@ -10,6 +10,12 @@
   }
 }
 
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .img {
   max-width: 40rem;
 }
@@ -35,8 +41,26 @@ ul {
   }
 }
 
-.like{
+.like,
+.share {
   margin: 1.5rem;
+  cursor: pointer;
+  color: #fff;
+  padding: 0.7rem 1rem;
   font-size: 1.6rem;
+  background-color: transparent;
+  border: 0.1rem solid #383737;
+  border-radius: 0.5rem;
+  text-decoration: none;
+
 }
 
+.like:hover,
+.share:hover {
+  box-shadow: 0 0 0.7rem 0.2rem #fff;
+}
+
+.loading,
+.error {
+  font-size: 3rem;
+}

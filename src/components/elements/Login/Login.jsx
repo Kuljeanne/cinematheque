@@ -3,7 +3,7 @@ import { AiOutlineWarning } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { logInUser } from '../../../store/authSlice/authSlice'
+import { logInUser } from '../../../store/userSlice/userSlice'
 import styles from './Login.module.scss'
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
     handleSubmit,
     formState: { errors }
   } = useForm()
-  const user = useSelector((state) => state.auth)
+  const user = useSelector((state) => state.user)
 
   const dispatch = useDispatch()
 

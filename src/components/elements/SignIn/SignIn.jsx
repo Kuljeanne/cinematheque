@@ -3,7 +3,7 @@ import { AiOutlineWarning } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import { getUser } from '../../../store/authSlice/authSlice.js'
+import { getUser } from '../../../store/userSlice/userSlice.js'
 import styles from './SignIn.module.scss'
 
 const SignIn = () => {
@@ -18,7 +18,7 @@ const SignIn = () => {
     dispatch(getUser(data))
   }
 
-  const selector = useSelector((state) => state.auth)
+  const selector = useSelector((state) => state.user)
 
   return (
     <div className={styles.wrapper}>
@@ -54,8 +54,8 @@ const SignIn = () => {
               message: 'Min length is 6'
             },
             pattern: {
-              value: /(?=.*[0-9])(?=.*[a-z])[0-9a-z]{6,}/g,
-              message: 'Password must contain at least 1 number and 1 letter'
+              value: /(?=.*[0-9])(?=.*[A-Za-z])[0-9A-Za-z]{6,}/g,
+              message: 'Password must contain at least 1 number and 1 latin letter'
             }
           })}
           type="password"

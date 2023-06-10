@@ -8,7 +8,7 @@ import styles from './User.module.scss'
 
 const User = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { status, login } = useSelector((state) => state.auth)
+  const { status, login } = useSelector((state) => state.user)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
@@ -17,10 +17,10 @@ const User = () => {
   return (
     <>
       {status === 'auth' && (
-        <div className={styles.user} onClick={toggleMenu}>
+        <div className={styles.user}>
           <p className={styles.username}>{login}</p>
-          <div className={styles.img}></div>
-          <MdArrowDropDown size={'2.5rem'} />
+          <div className={styles.img} onClick={toggleMenu} />
+          <MdArrowDropDown size={'2.5rem'} onClick={toggleMenu} />
           {isMenuOpen && <Menu />}
         </div>
       )}

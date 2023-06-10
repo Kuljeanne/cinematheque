@@ -1,0 +1,37 @@
+.movies {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.pagination {
+  padding: 2rem 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page_item {
+  cursor: pointer;
+  font-size: 2rem;
+  padding: 1rem;
+  border: 1px solid #dee2e6;
+}
+
+.page_item:hover {
+  background-color: #212020;
+}
+
+.active {
+  background-color: #1e1e1e;
+}
+
+.error,
+.load {
+  font-size: 3rem;
+  padding: 2rem;
+  text-align: center;
+}
