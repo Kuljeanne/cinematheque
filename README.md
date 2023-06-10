@@ -23,6 +23,9 @@
 - [RTK Query](https://github.com/Kuljeanne/cinematheque/blob/main/src/store/api/api.js)
 - [Используется Transforming Responses](https://github.com/Kuljeanne/cinematheque/blob/main/src/store/api/api.js)
 
+### Feature-flag
+-Если флаг с этой фичей включен, то у карточки единицы информации появляется кнопка “Поделиться”
+
 ### Дополнительно
 - Авторизация реализована через localStorage
 - API: [IMDb-api](https://imdb-api.com/)
