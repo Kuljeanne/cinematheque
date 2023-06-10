@@ -41,7 +41,8 @@ ul {
   }
 }
 
-.like {
+.like,
+.share {
   margin: 1.5rem;
   cursor: pointer;
   color: #fff;
@@ -50,10 +51,12 @@ ul {
   background-color: transparent;
   border: 0.1rem solid #383737;
   border-radius: 0.5rem;
+  text-decoration: none;
 
 }
 
-.like:hover {
+.like:hover,
+.share:hover {
   box-shadow: 0 0 0.7rem 0.2rem #fff;
 }
 

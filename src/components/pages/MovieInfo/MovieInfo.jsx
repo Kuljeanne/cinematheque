@@ -1,11 +1,15 @@
+import { FaTelegram } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
+import { useTelegramContext } from '../../../context/useTelegramContext'
 import { useGetMovieInfoQuery } from '../../../store/api/api'
 import { toggleFavourite } from '../../../store/userSlice/userSlice'
 import styles from './MoviesInfo.module.scss'
 
 const MovieInfo = () => {
+  const { feature } = useTelegramContext()
+
   const params = useParams()
   const id = params.id
   const { data, isLoading, isSuccess, isError } = useGetMovieInfoQuery(id)
@@ -74,6 +78,15 @@ const MovieInfo = () => {
           <button className={styles.like} onClick={toggleLike}>
             {isFavourite() ? 'Remove from fav' : 'Add to fav'} ❤️
           </button>
+          {feature && (
+            <a
+              href={`https://t.me/share/url?url=http://localhost:3000/movie/${id}`}
+              target="_blank"
+              className={styles.share}
+              rel="noreferrer">
+              Share <FaTelegram />
+            </a>
+          )}
         </div>
       </div>
     )

@@ -14,7 +14,14 @@
   border-bottom: 0.1rem solid transparent;
 }
 
-.link:hover{
+.dark.link {
+  color: #fff;
+  text-decoration: none;
+  font-size: 2rem;
+  border-bottom: 0.1rem solid transparent;
+}
+
+.link:hover {
   transform: scale(1.03);
-  color: #f3d9d9;;
+  color: #f3d9d9;
 }

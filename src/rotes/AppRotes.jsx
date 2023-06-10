@@ -16,7 +16,7 @@ const MovieInfo = lazy(() => import('../components/pages/MovieInfo/MovieInfo'))
 const Favorites = lazy(() => import('../components/pages/Favourites/Favourites'))
 const History = lazy(() => import('../components/pages/History/History'))
 const PaginatedIMovies = lazy(() =>
-  import('../components/elements/PaginatedItems/PaginatedIMovies')
+  import('../components/elements/PaginatedMovies/PaginatedIMovies')
 )
 
 const AppRotes = () => {
