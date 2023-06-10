@@ -22,3 +22,7 @@
 - [Кастомная мидлвара](https://github.com/Kuljeanne/cinematheque/blob/main/src/store/middlewares/saveUserData.js)
 - [RTK Query](https://github.com/Kuljeanne/cinematheque/blob/main/src/store/api/api.js)
 - [Используется Transforming Responses](https://github.com/Kuljeanne/cinematheque/blob/main/src/store/api/api.js)
+
+### Дополнительно
+- Авторизация реализована через localStorage
+- API: [IMDb-api](https://imdb-api.com/)
