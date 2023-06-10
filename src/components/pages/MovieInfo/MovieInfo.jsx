@@ -12,8 +12,8 @@ const MovieInfo = () => {
 
   const dispatch = useDispatch()
   const toggleLike = () => {
-    const { id, img, title, crew } = data
-    dispatch(toggleFavourite({ id, img, title, crew }))
+    const { id, image, title, crew } = data
+    dispatch(toggleFavourite({ id, img: image, title, crew }))
   }
 
   const { favourites } = useSelector((state) => state.user)

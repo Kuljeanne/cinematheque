@@ -21,10 +21,12 @@ const MovieCard = ({ id, img, title, crew }) => {
   return (
     <div className={styles.card}>
       <div className={styles.like}>
-        <BsFillSuitHeartFill color={isFavourite() ? 'f00' : 'fff'} onClick={toggleLike} />
+        <BsFillSuitHeartFill color={isFavourite() ? 'f00' : 'ffc0cb'} onClick={toggleLike} />
       </div>
       <Link className={styles.link} to={`/movie/${id}`}>
-        <div className={styles.img} style={{ backgroundImage: `url(${img})` }}></div>
+        <div className={styles.img}>
+          <img className={styles.pic} src={img} alt={title} />
+        </div>
         <h5 className={styles.title}>{title}</h5>
         <p className={styles.crew}>{crew}</p>
       </Link>

@@ -54,8 +54,8 @@ const SignIn = () => {
               message: 'Min length is 6'
             },
             pattern: {
-              value: /(?=.*[0-9])(?=.*[a-z])[0-9a-z]{6,}/g,
-              message: 'Password must contain at least 1 number and 1 letter'
+              value: /(?=.*[0-9])(?=.*[A-Za-z])[0-9A-Za-z]{6,}/g,
+              message: 'Password must contain at least 1 number and 1 latin letter'
             }
           })}
           type="password"

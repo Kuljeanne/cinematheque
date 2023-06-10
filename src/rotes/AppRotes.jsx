@@ -35,7 +35,7 @@ const AppRotes = () => {
           <Route path="search/" element={<SearchPage />}>
             <Route path=":exp" element={<SearchResults />} />
           </Route>
-          <Route path="Top250Movies" element={<PaginatedIMovies itemsPerPage={8} />} />
+          <Route path="Top250Movies" element={<PaginatedIMovies itemsPerPage={10} />} />
           <Route path="movie/:id" element={<MovieInfo />} />
           <Route element={<ProtectedRoute isAuth={user.status === 'auth'} />}>
             <Route path="/favourites" element={<Favorites />} />
