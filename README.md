@@ -5,7 +5,7 @@
 ### React
 
 - Функциональные компоненты c хуками в приоритете над классовыми. (Классовый только Error Boundaries)
-- Есть разделение на умные([movieInfo](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/pages/MovieInfo/MovieInfo.jsx), [Search](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/ui/Search/Search.jsx) и др) и глупые([histiryItem](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/ui/HistoryItem/HistoryItem.jsx), [SigninPage](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/pages/SignInPage/SignInPage.jsx)) компоненты
+- Есть разделение на умные([movieInfo](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/pages/MovieInfo/MovieInfo.jsx), [Search](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/ui/Search/Search.jsx) и др) и глупые ([HistoryItem](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/ui/HistoryItem/HistoryItem.jsx), [SigninPage](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/pages/SignInPage/SignInPage.jsx) и др) компоненты
 - Есть рендеринг списков [PaginatedMovies](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/elements/PaginatedMovies/PaginatedIMovies.jsx)
 - Реализована форма [signUp](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/elements/SignIn/SignIn.jsx), [logIn](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/elements/Login/Login.jsx)
 - Применение Контекст API [TelegramShare -feature flag](https://github.com/Kuljeanne/cinematheque/tree/main/src/context) - добавляет кнопку поделиться в [MovieInfo](https://github.com/Kuljeanne/cinematheque/blob/main/src/components/pages/MovieInfo/MovieInfo.jsx)
