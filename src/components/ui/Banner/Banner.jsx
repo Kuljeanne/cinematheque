@@ -4,12 +4,12 @@ const Banner = () => {
   return (
     <div className={styles.banner}>
       <h1 className={styles.title}>Cinematheque</h1>
-      <ul>
+      <ul className={styles.list}>
         <li className={styles.text}>
           Web-site, which help you know more about movies
         </li>
         <li className={styles.text}>
-          To find movie you need, enter movie title in the &apos;Search&lsquo; area bellow.
+          To find movie you need, enter movie title in the &apos;Search&lsquo; area above.
         </li>
         <li className={styles.text}>
           To look at TOP250, click button &apos;Top 250 Movies&lsquo; at the top of this page.

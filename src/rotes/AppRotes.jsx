@@ -4,24 +4,26 @@ import { Route, Routes } from 'react-router-dom'
 
 import App from '../App'
 import Main from '../components/elements/Main/Main'
-import Catalog from '../components/pages/Catalog/Catalog'
+import Spinner from '../components/elements/Spinner/Spinner'
 import NotFound from '../components/pages/NotFound/NotFound'
 import SearchPage from '../components/pages/SearchPage/SearchPage'
 import SignInPage from '../components/pages/SignInPage/SignInPage'
 import { ProtectedRoute } from './ProtectedRoure'
 import { UnprotectedRoute } from './UnprotectedRoure'
-import Spinner from '../components/elements/Spinner/Spinner'
 
 const SearchResults = lazy(() => import('../components/elements/SearchResults/SearchResults'))
 const MovieInfo = lazy(() => import('../components/pages/MovieInfo/MovieInfo'))
 const Favorites = lazy(() => import('../components/pages/Favourites/Favourites'))
 const History = lazy(() => import('../components/pages/History/History'))
+const PaginatedIMovies = lazy(() =>
+  import('../components/elements/PaginatedItems/PaginatedIMovies')
+)
 
 const AppRotes = () => {
   const user = useSelector((state) => state.user)
 
   return (
-    <Suspense fallback={<Spinner/>}>
+    <Suspense fallback={<Spinner />}>
       <Routes>
         <Route element={<UnprotectedRoute isAuth={user.status === 'auth'} />}>
           <Route path="/login" element={<SignInPage hasAccount={true} />} />
@@ -33,7 +35,7 @@ const AppRotes = () => {
           <Route path="search/" element={<SearchPage />}>
             <Route path=":exp" element={<SearchResults />} />
           </Route>
-          <Route path="Top250Movies" element={<Catalog />} />
+          <Route path="Top250Movies" element={<PaginatedIMovies itemsPerPage={8} />} />
           <Route path="movie/:id" element={<MovieInfo />} />
           <Route element={<ProtectedRoute isAuth={user.status === 'auth'} />}>
             <Route path="/favourites" element={<Favorites />} />

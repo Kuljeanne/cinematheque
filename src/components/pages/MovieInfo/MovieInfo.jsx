@@ -1,12 +1,26 @@
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
 import { useGetMovieInfoQuery } from '../../../store/api/api'
+import { toggleFavourite } from '../../../store/userSlice/userSlice'
 import styles from './MoviesInfo.module.scss'
 
 const MovieInfo = () => {
   const params = useParams()
   const id = params.id
   const { data, isLoading, isSuccess, isError } = useGetMovieInfoQuery(id)
+
+  const dispatch = useDispatch()
+  const toggleLike = () => {
+    const { id, img, title, crew } = data
+    dispatch(toggleFavourite({ id, img, title, crew }))
+  }
+
+  const { favourites } = useSelector((state) => state.user)
+
+  const isFavourite = () => {
+    return favourites.some((fav) => fav.id === data.id)
+  }
 
   let content
 
@@ -57,14 +71,16 @@ const MovieInfo = () => {
               Stars: <span>{data.stars}</span>
             </li>
           </ul>
-          <button className={styles.like}>Add to fav</button>
+          <button className={styles.like} onClick={toggleLike}>
+            {isFavourite() ? 'Remove from fav' : 'Add to fav'} ❤️
+          </button>
         </div>
       </div>
     )
   } else if (isError) {
     content = <div>Something went wrong, please try again </div>
   }
-  return <div>{content}</div>
+  return <div className={styles.content}>{content}</div>
 }
 
 export default MovieInfo
