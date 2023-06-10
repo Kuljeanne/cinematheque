@@ -30,7 +30,7 @@ const PaginatedIMovies = ({ itemsPerPage }) => {
     <>
       {isError && <div className={styles.error}>Something went wrong, please try again later</div>}
       {isLoading && (
-        <div className={styles.error}>Loading</div>
+        <div className={styles.load}>Loading</div>
       )}
       {currentItems && (
         <div className={styles.movies}>

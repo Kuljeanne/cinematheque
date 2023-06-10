@@ -78,7 +78,7 @@ const MovieInfo = () => {
       </div>
     )
   } else if (isError) {
-    content = <div>Something went wrong, please try again </div>
+    content = <div className={styles.error}>Something went wrong, please try again </div>
   }
   return <div className={styles.content}>{content}</div>
 }

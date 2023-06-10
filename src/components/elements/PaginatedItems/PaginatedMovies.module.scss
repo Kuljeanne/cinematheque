@@ -25,6 +25,13 @@
   background-color: #212020;
 }
 
-.active{
+.active {
   background-color: #1e1e1e;
+}
+
+.error,
+.load {
+  font-size: 3rem;
+  padding: 2rem;
+  text-align: center;
 }

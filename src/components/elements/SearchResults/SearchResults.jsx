@@ -8,7 +8,7 @@ const SearchResults = () => {
   const params = useParams()
   const exp = params.exp
 
-  const { data, isLoading, isSuccess, isError, error } = useSearchMovieQuery(exp)
+  const { data, isLoading, isSuccess, isError } = useSearchMovieQuery(exp)
   let content
 
   if (isLoading) {
@@ -19,7 +19,7 @@ const SearchResults = () => {
       <MovieCard key={movie.id} id={movie.id} img={movie.image} title={movie.title} />
     ))
   } else if (isError) {
-    content = <div>{error.toString()}</div>
+    content = <div className={styles.error}>Something went wrong, please try again </div>
   }
   return <div className={styles.container}>{content}</div>
 }
