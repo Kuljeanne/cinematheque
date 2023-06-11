@@ -16,7 +16,7 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    dispatch(checkAuth())
+    dispatch(checkAuth({}))
   }, [dispatch])
 
   return (

@@ -10,13 +10,6 @@ const initialState = {
   error: null
 }
 
-function getCookie(name) {
-  let matches = document.cookie.match(
-    new RegExp('(?:^|; )' + name.replace(/([.$?*|{}()[\]\\/+^])/g, '\\$1') + '=([^;]*)')
-  )
-  return matches ? decodeURIComponent(matches[1]) : undefined
-}
-
 const isUserExist = (login) => {
   return !!localStorage.getItem(login)
 }
@@ -44,34 +37,22 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     logInUser: (state, action) => {
-      const user = JSON.parse(localStorage.getItem(action.payload.login))
-      if (!user) {
-        state.error = 'User is not found'
-        return
-      }
-      if (user.password !== action.payload.password) {
-        state.error = 'Password is not correct'
-        return
-      }
-      state.status = 'auth'
-      state.login = user.login
-      state.email = user.email
-      state.password = user.password
-      state.history = user.history
-      state.favourites = user.favourites
+      state.error = action.payload.error
+      state.status = action.payload.status
+      state.login = action.payload.login
+      state.email = action.payload.email
+      state.password = action.payload.password
+      state.history = action.payload.history
+      state.favourites = action.payload.favourites
     },
-    checkAuth: (state) => {
-      if (!state.login && getCookie('user')) {
-        const login = getCookie('user')
-        const user = JSON.parse(localStorage.getItem(login))
-        if (!user) return state
-        state.status = user.status
-        state.login = user.login
-        state.email = user.email
-        state.password = user.password
-        state.history = user.history
-        state.favourites = user.favourites
-      }
+    checkAuth: (state, action) => {
+      state.error = action.payload.error
+      state.status = action.payload.status
+      state.login = action.payload.login
+      state.email = action.payload.email
+      state.password = action.payload.password
+      state.history = action.payload.history
+      state.favourites = action.payload.favourites
     },
     removeUser: (state) => {
       state.status = 'out'
@@ -86,7 +67,7 @@ export const userSlice = createSlice({
       }
     },
     addHistory: (state, action) => {
-      state.history.push(action.payload) 
+      state.history.push(action.payload)
     }
   },
   extraReducers: (builder) => {
@@ -104,6 +85,7 @@ export const userSlice = createSlice({
         state.history = []
       })
       .addCase(getUser.rejected, (state, action) => {
+        state.status = 'out'
         state.error = action.payload
       })
   }
