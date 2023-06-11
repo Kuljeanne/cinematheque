@@ -42,7 +42,8 @@ const Search = () => {
                 <li
                   key={i}
                   onClick={() => {
-                    handleSearch(res.title)
+                    const date = new Date().toLocaleString()
+                    dispatch(addHistory({ exp: res.title, date }))
                   }}>
                   <Link to={`/movie/${res.id}`}>{res.title}</Link>
                 </li>

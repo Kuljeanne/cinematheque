@@ -67,7 +67,9 @@ export const userSlice = createSlice({
       }
     },
     addHistory: (state, action) => {
-      state.history.push(action.payload)
+      if (state.status === 'auth') {
+        state.history.push(action.payload)
+      }
     }
   },
   extraReducers: (builder) => {

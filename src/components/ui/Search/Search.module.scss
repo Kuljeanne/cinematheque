@@ -58,6 +58,8 @@
     cursor: pointer;
 
     >a {
+      display: block;
+      width: 100%;
       color: #fff;
       text-decoration: none;
     }
