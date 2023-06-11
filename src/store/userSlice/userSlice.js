@@ -65,7 +65,7 @@ export const userSlice = createSlice({
         const login = getCookie('user')
         const user = JSON.parse(localStorage.getItem(login))
         if (!user) return state
-        state.status = 'auth'
+        state.status = user.status
         state.login = user.login
         state.email = user.email
         state.password = user.password

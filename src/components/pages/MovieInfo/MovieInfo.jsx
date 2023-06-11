@@ -20,7 +20,7 @@ const MovieInfo = () => {
     dispatch(toggleFavourite({ id, img: image, title, crew }))
   }
 
-  const { favourites } = useSelector((state) => state.user)
+  const { status, favourites } = useSelector((state) => state.user)
 
   const isFavourite = () => {
     return favourites.some((fav) => fav.id === data.id)
@@ -75,9 +75,11 @@ const MovieInfo = () => {
               Stars: <span>{data.stars}</span>
             </li>
           </ul>
-          <button className={styles.like} onClick={toggleLike}>
-            {isFavourite() ? 'Remove from fav' : 'Add to fav'} ❤️
-          </button>
+          {status === 'auth' && (
+            <button className={styles.like} onClick={toggleLike}>
+              {isFavourite() ? 'Remove from fav' : 'Add to fav'} ❤️
+            </button>
+          )}
           {feature && (
             <a
               href={`https://t.me/share/url?url=http://localhost:3000/movie/${id}`}

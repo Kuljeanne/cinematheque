@@ -8,7 +8,7 @@ import styles from './MovieCard.module.scss'
 
 const MovieCard = ({ id, img, title, crew }) => {
   const dispatch = useDispatch()
-  const { favourites } = useSelector((state) => state.user)
+  const { status, favourites } = useSelector((state) => state.user)
 
   const toggleLike = () => {
     dispatch(toggleFavourite({ id, img, title, crew }))
@@ -20,9 +20,12 @@ const MovieCard = ({ id, img, title, crew }) => {
 
   return (
     <div className={styles.card}>
-      <div className={styles.like}>
-        <BsFillSuitHeartFill color={isFavourite() ? 'f00' : 'ffc0cb'} onClick={toggleLike} />
-      </div>
+      {status === 'auth' && (
+        <div className={styles.like}>
+          <BsFillSuitHeartFill color={isFavourite() ? 'f00' : 'ffc0cb'} onClick={toggleLike} />
+        </div>
+      )}
+
       <Link className={styles.link} to={`/movie/${id}`}>
         <div className={styles.img}>
           <img className={styles.pic} src={img} alt={title} />
