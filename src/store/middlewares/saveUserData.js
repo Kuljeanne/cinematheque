@@ -4,7 +4,6 @@ export const saveUserData = (store) => (next) => (action) => {
   }
   const result = next(action)
   const { user } = store.getState()
-  console.log(action)
   if (user?.email) {
     localStorage.setItem(user.login, JSON.stringify(user))
     document.cookie = `user=${user.login}`

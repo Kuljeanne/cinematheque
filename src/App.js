@@ -1,17 +1,13 @@
 import { useEffect } from 'react'
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Outlet } from 'react-router-dom'
 
 import Header from './components/elements/Header/Header'
-import { TelegramContext } from './context/TelegramProvider'
+import { TelegramProvider } from './context/TelegramProvider'
 import { checkAuth } from './store/userSlice/userSlice'
 
 const App = () => {
-  const [feature, setFeature] = useState(false)
-  const toggleFeature = () => {
-    setFeature(!feature)
-  }
+
 
   const dispatch = useDispatch()
 
@@ -20,10 +16,10 @@ const App = () => {
   }, [dispatch])
 
   return (
-    <TelegramContext.Provider value={{ feature, toggleFeature }}>
+    <TelegramProvider>
       <Header />
       <Outlet />
-    </TelegramContext.Provider>
+    </TelegramProvider>
   )
 }
 

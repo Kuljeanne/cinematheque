@@ -1,6 +1,5 @@
 import { createContext } from 'react'
 
 export const TelegramContext = createContext({
-  feature: false,
-  toggleFeature: () => {}
+  feature: false
 })

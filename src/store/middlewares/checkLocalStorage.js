@@ -23,7 +23,6 @@ export const checkLocalStorage = (store) => (next) => (action) => {
   }
 
   if (action.type === 'auth/checkAuth') {
-    console.log(getCookie('user'))
     if (getCookie('user')) {
       const login = getCookie('user')
       const user = JSON.parse(localStorage.getItem(login))
