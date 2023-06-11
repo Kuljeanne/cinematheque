@@ -1,5 +1,5 @@
 {
   "feature-flag": {
-    "isTelegramShareEnabled": false
+    "isTelegramShareEnabled": true
   }
 }
