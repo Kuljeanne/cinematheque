@@ -57,6 +57,11 @@
     border-bottom: 1px solid;
     cursor: pointer;
 
+    >a {
+      color: #fff;
+      text-decoration: none;
+    }
+
   }
 
   >li:hover {

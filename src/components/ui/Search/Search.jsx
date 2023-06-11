@@ -1,6 +1,6 @@
 import { GoSearch } from 'react-icons/go'
 import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
 import { useSearch } from '../../../hooks/useSearch'
 import { addHistory } from '../../../store/userSlice/userSlice'
@@ -8,7 +8,9 @@ import styles from './Search.module.scss'
 
 const Search = () => {
   const navigate = useNavigate()
-  const { data, handleInput, isSuccess, isLoading, searchValue } = useSearch()
+  const params = useParams()
+  const exp = params.exp
+  const { data, handleInput, isSuccess, isLoading, searchValue } = useSearch(exp)
   const dispatch = useDispatch()
 
   const handleSearch = (search) => {
@@ -42,7 +44,7 @@ const Search = () => {
                   onClick={() => {
                     handleSearch(res.title)
                   }}>
-                  {res.title}
+                  <Link to={`/movie/${res.id}`}>{res.title}</Link>
                 </li>
               ))
             ) : (
@@ -59,6 +61,5 @@ const Search = () => {
     </div>
   )
 }
-
 
 export default Search
